@@ -37,8 +37,9 @@ RUN service postgresql start && \
     su - postgres -c "psql -c \"ALTER USER postgres PASSWORD '${POSTGRES_PASSWORD}';\"" && \
     su - postgres -c "createdb ${POSTGRES_DB}"
 
-# Command to start PostgreSQL and ASP.NET Core app
-CMD service postgresql start && dotnet Backend.dll
+COPY wait-for-postgres.sh /app/
+RUN chmod +x /app/wait-for-postgres.sh
+CMD /app/wait-for-postgres.sh && dotnet Backend.dll
 
 
 # FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
