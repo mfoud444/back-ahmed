@@ -4,7 +4,9 @@ EXPOSE 5125
 
 ENV ASPNETCORE_URLS=http://0.0.0.0:5125
 ENV ConnectionStrings__Local="Host=your-postgres-host;Port=5432;Database=yourdbname;Username=youruser;Password=yourpassword"
-
+ENV JWT__KEY="your-long-secret-key"
+ENV JWT__ISSUER="your-issuer"
+ENV JWT__AUDIENCE="your-audience"
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 COPY ["Backend.csproj", "./"]
