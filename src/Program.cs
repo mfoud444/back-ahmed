@@ -121,6 +121,7 @@ using (var scope = app.Services.CreateScope())
         if (dbContext.Database.CanConnect())
         {
             Console.WriteLine("Database is connected");
+             dbContext.Database.Migrate();
         }
         else
         {
