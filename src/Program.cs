@@ -79,11 +79,18 @@ builder.Services.AddAuthorization(options =>
 //  ***  add CORS settings ***
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowSpecificOrigin",
-        builder => builder.WithOrigins("http://localhost:5173")
-                          .AllowAnyHeader()
-                          .AllowAnyMethod());
+    options.AddPolicy("AllowAll",
+        policyBuilder => policyBuilder.AllowAnyOrigin()
+                                      .AllowAnyHeader()
+                                      .AllowAnyMethod());
 });
+// builder.Services.AddCors(options =>
+// {
+//     options.AddPolicy("AllowSpecificOrigin",
+//         builder => builder.WithOrigins("http://localhost:5173")
+//                           .AllowAnyHeader()
+//                           .AllowAnyMethod());
+// });
 
 
 //add controllers
